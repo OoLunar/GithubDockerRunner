@@ -38,9 +38,6 @@ setup() {
 # Set a signal handler for the SIGINT signal (Ctrl+C)
 trap "exit" INT
 
-# Change the hostname to the runner name instead of the container id.
-hostname -F /etc/hostname
-
 # Change to the /home/runner directory
 cd /home/runner
 
