@@ -12,6 +12,8 @@ RUN apt-get update \
   && useradd -rM runner \
   # Create the home directory for the runner user
   && mkdir /home/runner \
+  # Create a pid file for the runner user
+  && touch /home/runner/.pid \
   # Set permissions on the runner user's home directory
   && chmod -R 700 /home/runner \
   && chown -R runner:runner /home/runner \

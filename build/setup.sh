@@ -35,7 +35,7 @@ if [ ! -f ".runner" ]; then
 fi
 
 # Run the run.sh script
-su runner -c "./run.sh &; echo $! > /home/runner/.pid"
+su runner -c "./run.sh & echo $! > /home/runner/.pid"
 
 # Idle
 wait $(cat /home/runner/.pid)
