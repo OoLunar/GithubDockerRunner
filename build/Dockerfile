@@ -5,18 +5,16 @@ ENV DOTNET_NOLOGO=1
 COPY setup.sh /setup.sh
 RUN apt-get update \
   # Install curl
-  && apt-get install -y curl \
+  && apt-get install -y curl tini \
   # Clear apt cache
   && rm -rf /var/lib/apt/lists/* \
   # Add a runner user
   && useradd -rM runner \
   # Create the home directory for the runner user
   && mkdir /home/runner \
-  # Create a pid file for the runner user
-  && touch /home/runner/.pid \
   # Set permissions on the runner user's home directory
   && chmod -R 700 /home/runner \
   && chown -R runner:runner /home/runner \
   && chmod +x /setup.sh
 
-ENTRYPOINT ["/bin/bash", "/setup.sh"]
+ENTRYPOINT ["/usr/bin/tini", "/setup.sh"]

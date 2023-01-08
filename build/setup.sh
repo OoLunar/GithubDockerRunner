@@ -22,9 +22,6 @@ setup() {
 
 ### Logic ###
 
-# Set a signal handler for the SIGINT signal (Ctrl+C) or SIGTERM (docker compose down)
-trap "kill -9 \`pidof Runner.Listener\`" SIGINT SIGTERM
-
 # Change to the /home/runner directory
 cd /home/runner
 
