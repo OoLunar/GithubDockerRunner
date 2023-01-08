@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  runner:
+    build:
+      context: build
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      # Required for the first run only!
+      - GITHUB_TOKEN="<token>"
+      # Same here!
+      - GITHUB_REPOSITORY="<repo url>"
+    volumes:
+      # The hostname is required for the runner's name.
+      - "/etc/hostname:/etc/hostname:ro"
+      # We do this to save the runner and not have to download the runner each time.
+      - "./work:/home/runner:rw"
