@@ -16,13 +16,6 @@ setup() {
   # Remove the package file
   rm ./actions-runner-linux-x64-2.299.1.tar.gz
 
-  # Add a runner user
-  useradd -r runner
-
-  # Set permissions on the runner user's home directory
-  chmod -R 700 .
-  chown -R runner:runner .
-
   # Run the setup script
   su runner -c "./config.sh --url $GITHUB_REPOSITORY --token $GITHUB_TOKEN --unattended --replace --disableupdate"
 }
