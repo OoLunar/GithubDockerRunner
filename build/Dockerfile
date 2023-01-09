@@ -5,7 +5,7 @@ ENV DOTNET_NOLOGO=1
 COPY setup.sh /setup.sh
 RUN apt-get update \
   # Install curl
-  && apt-get install -y curl tini \
+  && apt-get install -y curl tini git \
   # Clear apt cache
   && rm -rf /var/lib/apt/lists/* \
   # Add a runner user
