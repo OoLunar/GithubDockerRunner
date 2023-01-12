@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime:latest
+FROM mcr.microsoft.com/dotnet/sdk:latest
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 ENV DOTNET_NOLOGO=1
 
