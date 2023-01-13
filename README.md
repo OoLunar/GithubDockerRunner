@@ -25,7 +25,7 @@ The Github runner registers itself using the hostname of the machine it is runni
 # Running
 Once you've configured the `docker-compose.yml` file, you can run the following command to start the runner:
 
-        docker-compose up -d
+    docker-compose up -d
 
 The runner will go download the 2.300 version of the Github Runner only once, and then start running. You can check the status of the runner by running the following command:
 
