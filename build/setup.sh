@@ -33,7 +33,7 @@ setup() {
   rm ./github-runner.tar.gz
 
   # Run the setup script
-  su runner -c "./config.sh --url $GITHUB_REPOSITORY --token $GITHUB_TOKEN --unattended --replace --disableupdate"
+  su runner -c "./config.sh --url $GITHUB_REPOSITORY --token $GITHUB_TOKEN --unattended --replace"
 }
 
 ### Logic ###

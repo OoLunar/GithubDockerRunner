@@ -33,6 +33,11 @@ The runner will go download the 2.300 version of the Github Runner only once, an
 
 You may also remove the `GITHUB_TOKEN` and `GITHUB_REPOSITORY` environment variables in the `docker-compose.yml` file as they are only required for the initial setup/first run.
 
+# Using Docker in the runner
+To use Docker inside of a Docker container, you first must add a volume to the Docker socket. This can be done by adding the following line to the `volumes` section of the `docker-compose.yml` file:
+
+    - /var/run/docker.sock:/var/run/docker.sock
+
 # Updating
 The Github Runner has an auto-updater built in and updates itself automatically. Whenever a new version of the Github Runner is released, the runner will update itself and exit the application, causing the container to restart due to the `unless-stopped` policy.
 
