@@ -4,8 +4,6 @@ ENV DOTNET_NOLOGO=1
 
 COPY setup.sh /setup.sh
 RUN apt-get update \
-  # Remove any existing versions of Docker
-  && apt-get remove docker docker-engine docker.io containerd runc \
   # Install curl and Docker deps
   && apt-get install -y curl tini git ca-certificates gnupg lsb-release \
   # Add Docker's official GPG key
