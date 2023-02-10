@@ -17,7 +17,7 @@ RUN apt-get update \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null \
   # Install Docker
   && apt-get update \
-  && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   # Clear apt cache
   && rm -rf /var/lib/apt/lists/* \
   # Add a runner user
