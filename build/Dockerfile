@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:latest
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 ENV DOTNET_NOLOGO=1
-ENV HOST_DOCKER_ID=999
+ARG HOST_DOCKER_ID=999
 
 COPY setup.sh /setup.sh
 RUN apt-get update \
