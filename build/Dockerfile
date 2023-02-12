@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:latest
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 ENV DOTNET_NOLOGO=1
+ENV HOST_DOCKER_ID=999
 
 COPY setup.sh /setup.sh
 RUN apt-get update \
@@ -18,6 +19,8 @@ RUN apt-get update \
   && apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
   # Clear apt cache
   && rm -rf /var/lib/apt/lists/* \
+  # Change the group id to what is used in the host
+  groupmod -g $HOST_DOCKER_ID docker
   # Add a runner user
   && useradd -rM runner \
   # Add the runner user to the docker group
