@@ -20,6 +20,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   # Add a runner user
   && useradd -rM runner \
+  # Add the runner user to the docker group
+  && usermod -aG docker runner \
   # Create the home directory for the runner user
   && mkdir /home/runner \
   # Set permissions on the runner user's home directory
