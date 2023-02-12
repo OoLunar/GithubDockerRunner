@@ -20,7 +20,7 @@ RUN apt-get update \
   # Clear apt cache
   && rm -rf /var/lib/apt/lists/* \
   # Change the group id to what is used in the host
-  && groupmod -g $HOST_DOCKER_ID docker \
+  && groupmod -g ${HOST_DOCKER_ID} docker \
   # Add a runner user
   && useradd -rM runner \
   # Add the runner user to the docker group
