@@ -1,5 +1,14 @@
 #!/bin/bash
 
+### Environment Variables ###
+export DOTNET_ROOT=/usr/share/dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_NOLOGO=1
+export PATH="$PATH:/home/lunar/.dotnet/tools"
+
+export RUNNER_MANUALLY_TRAP_SIG=1
+export RUNNER_ALLOW_RUNASROOT=1
+
 ### Functions ###
 
 # Define the setup function
@@ -46,15 +55,6 @@ if [ ! -f ".runner" ]; then
   # If the file does not exist, run the setup function
   setup
 fi
-
-# Load up any environment variables from the .env file
-export DOTNET_ROOT=/usr/share/dotnet
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export DOTNET_NOLOGO=1
-export PATH="$PATH:/home/lunar/.dotnet/tools"
-
-export RUNNER_MANUALLY_TRAP_SIG=1
-export RUNNER_ALLOW_RUNASROOT=1
 
 # Run the run.sh script
 ./run.sh
