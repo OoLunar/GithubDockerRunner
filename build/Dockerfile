@@ -8,4 +8,4 @@ RUN xbps-install -Syu \
   && mkdir /root/runner \
   && chmod +x /setup.sh
 
-ENTRYPOINT ["/sbin/tini", "/setup.sh"]
+ENTRYPOINT ["/usr/sbin/tini", "/setup.sh"]
