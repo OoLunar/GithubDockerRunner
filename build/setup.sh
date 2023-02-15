@@ -47,5 +47,8 @@ if [ ! -f ".runner" ]; then
   setup
 fi
 
+# Load up any environment variables from the .env file
+source /home/runner/.env
+
 # Run the run.sh script
 su runner -c "./run.sh"
