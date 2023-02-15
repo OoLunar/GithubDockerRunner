@@ -39,7 +39,7 @@ setup() {
 ### Logic ###
 
 # Change to the /home/runner directory
-cd /home/runner
+cd /root/runner
 
 # Check if the .runner file does not exist
 if [ ! -f ".runner" ]; then
@@ -51,6 +51,10 @@ fi
 export DOTNET_ROOT=/usr/share/dotnet
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_NOLOGO=1
+export PATH="$PATH:/home/lunar/.dotnet/tools"
+
+export RUNNER_MANUALLY_TRAP_SIG=1
+export RUNNER_ALLOW_RUNASROOT=1
 
 # Run the run.sh script
-RUNNER_MANUALLY_TRAP_SIG=1 ./run.sh
+./run.sh
