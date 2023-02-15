@@ -53,4 +53,4 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_NOLOGO=1
 
 # Run the run.sh script
-su runner -c "./run.sh"
+RUNNER_MANUALLY_TRAP_SIG=1 ./run.sh

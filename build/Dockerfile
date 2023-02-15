@@ -32,4 +32,5 @@ RUN apt-get update \
   && chown -R runner:runner /home/runner \
   && chmod +x /setup.sh
 
-ENTRYPOINT ["/usr/bin/tini", "/setup.sh"]
+USER runner
+ENTRYPOINT ["/bin/bash", "/setup.sh"]
