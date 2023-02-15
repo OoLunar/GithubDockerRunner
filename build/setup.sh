@@ -30,7 +30,7 @@ setup() {
   esac
 
   # Download the Actions Runner package
-  curl -o github-runner.tar.gz -L "https://github.com/actions/runner/releases/download/v2.302.1/actions-runner-linux-${arch}-2.302.1.tar.gz"
+  curl --silent -o github-runner.tar.gz -L "https://github.com/actions/runner/releases/download/v2.302.1/actions-runner-linux-${arch}-2.302.1.tar.gz"
 
   # Check the SHA256 checksum of the package
   echo "${sha256}  ./github-runner.tar.gz" | sha256sum -c
