@@ -1,4 +1,4 @@
-FROM ghcr.io/void-linux/void-linux:latest-thin-x86_64
+FROM ghcr.io/void-linux/void-linux:latest-full-x86_64
 
 COPY setup.sh /setup.sh
 
