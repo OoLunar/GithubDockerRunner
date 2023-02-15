@@ -1,5 +1,4 @@
 FROM mcr.microsoft.com/dotnet/sdk:latest
-ARG HOST_DOCKER_ID=999
 
 COPY setup.sh /setup.sh
 RUN apt-get update \
