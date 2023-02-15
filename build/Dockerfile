@@ -1,10 +1,10 @@
-FROM alpine:latest
+FROM ghcr.io/void-linux/void-linux:thin
 
 COPY setup.sh /setup.sh
 
-RUN apk upgrade --update-cache --available \
-  && apk add docker docker-compose curl git gnupg tini bash openssl libstdc++ icu-libs icu \
-  && rm -rf /var/cache/apk/* \
+RUN xbps-install -Syu \
+  && xbps-install docker docker-compose curl git gnupg tini bash openssl libstdc++ icu icu-libs \
+  && xbps-remove -ROo \
   && mkdir /root/runner \
   && chmod +x /setup.sh
 
