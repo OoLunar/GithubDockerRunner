@@ -3,9 +3,9 @@ FROM alpine:latest
 COPY setup.sh /setup.sh
 
 RUN apk upgrade --update-cache --available \
-  && apk add docker docker-compose curl git gnupg tini \
+  && apk add docker docker-compose curl git gnupg tini bash \
   && rm -rf /var/cache/apk/* \
   && mkdir /root/runner \
   && chmod +x /setup.sh
 
-ENTRYPOINT ["/bin/bash", "/setup.sh"]
+ENTRYPOINT ["/usr/bin/tini", "/setup.sh"]
