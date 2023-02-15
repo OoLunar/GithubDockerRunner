@@ -8,4 +8,4 @@ RUN apk upgrade --update-cache --available \
   && mkdir /root/runner \
   && chmod +x /setup.sh
 
-ENTRYPOINT ["/usr/bin/tini", "/setup.sh"]
+ENTRYPOINT ["/sbin/tini", "/setup.sh"]
