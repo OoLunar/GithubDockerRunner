@@ -47,5 +47,10 @@ if [ ! -f ".runner" ]; then
   setup
 fi
 
-# Load env vars and run the run.sh script
-su runner -c "/bin/bash -c 'source /home/runner/.env && ./run.sh'"
+# Load up any environment variables from the .env file
+export DOTNET_ROOT=/usr/share/dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_NOLOGO=1
+
+# Run the run.sh script
+su runner -c "./run.sh"
