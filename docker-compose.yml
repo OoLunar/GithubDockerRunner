@@ -1,17 +1,17 @@
 version: "3.9"
 services:
   runner:
+    restart: unless-stopped
+    # The hostname is what Github will identify your runner as.
+    hostname: <hostname>
     build:
       context: build
       dockerfile: Dockerfile
-    restart: unless-stopped
-    # Change this to what you want your runner to be called!
-    hostname: docker_runner
-    environment:
-      # Required for the first run only!
-      - GITHUB_TOKEN="<token>"
-      # Same here!
-      - GITHUB_REPOSITORY="<repo url>"
     volumes:
-      # We do this to save the runner and not have to download the runner each time.
-      - "./work:/home/runner:rw"
+      - "./work:/root/runner:rw"
+      # Uncomment this if you want to enable docker in docker support
+      #- "/var/run/docker.sock:/var/run/docker.sock:rw"
+    environment:
+    # These can be removed after the first run
+    - "GITHUB_TOKEN=<token>"
+    - "GITHUB_REPOSITORY=<repository>"
