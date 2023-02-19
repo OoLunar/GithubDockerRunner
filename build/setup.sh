@@ -11,19 +11,19 @@ export RUNNER_ALLOW_RUNASROOT=1
 
 # Define the setup function
 setup() {
-    # Determine the CPU architecture
+  # Determine the CPU architecture
   case "$(uname -m)" in
     x86_64)
       arch=x64
-      sha256=15230bb2cf6af00e14ff294f85d2b6f07d6e856d229a1695cbe6290a16109995
+      sha256=3d357d4da3449a3b2c644dee1cc245436c09b6e5ece3e26a05bb3025010ea14d
       ;;
     armv7l)
       arch=arm
-      sha256=8f70778a11ff9540886d97601c18a95a7ed388159af49c2c1c6f88eff4a00794
+      sha256=cb9992e3853d95116ff73f9353b45d5134e315eb3c03b13fb6adb8651346411d
       ;;
     aarch64)
       arch=arm64
-      sha256=885f02222f6e54682020dbb8beedf8226b039ec706ce3f3ea4b4ee626de014c3
+      sha256=cac05dc325a3fd86e0253bd5bda1831e1d550805c47d6e3cc6d248570ceb3b74
       ;;
   esac
 
@@ -31,7 +31,12 @@ setup() {
   curl --silent -o github-runner.tar.gz -L "https://github.com/actions/runner/releases/download/v2.302.1/actions-runner-linux-${arch}-2.302.1.tar.gz"
 
   # Check the SHA256 checksum of the package
-  echo "${sha256}  ./github-runner.tar.gz" | sha256sum -c
+  echo "${sha256}  github-runner.tar.gz" | sha256sum -c > /dev/null
+
+  if [ $? -ne 0 ]; then
+    echo "The SHA256 checksum of the package does not match!"
+    exit 1
+  fi
 
   # Extract the package
   tar xzf ./github-runner.tar.gz
