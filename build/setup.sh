@@ -4,7 +4,7 @@
 export DOTNET_ROOT=/usr/share/dotnet
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_NOLOGO=1
-export PATH="$PATH:/home/lunar/.dotnet/tools"
+export PATH="$PATH:/root/.dotnet/tools"
 export RUNNER_ALLOW_RUNASROOT=1
 
 ### Functions ###
