@@ -6,6 +6,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_NOLOGO=1
 export PATH="$PATH:/root/.dotnet/tools"
 export RUNNER_ALLOW_RUNASROOT=1
+export RUNNER_MANUALLY_TRAP_SIG=1
 
 ### Functions ###
 
