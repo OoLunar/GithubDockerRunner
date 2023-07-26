@@ -5,11 +5,12 @@ on:
     - cron: "0 12 * * 0"
   workflow_dispatch:
 
+permissions: write-all
+
 jobs:
   publish:
     name: Publish Release
     runs-on: self-hosted
-    permissions: write-all
     if: "!contains(format('{0} {1}', github.event.head_commit.message, github.event.pull_request.title), '[ci-skip]')"
     steps:
       - name: Checkout
@@ -26,6 +27,4 @@ jobs:
           context: ${{ github.workspace }}/build
           file: build/Dockerfile
           push: true
-          tags: |
-            ghcr.io/oolunar/githubdockerrunner:latest
-            ghcr.io/oolunar/githubdockerrunner:${{ github.sha }}
+          tags: ghcr.io/oolunar/githubdockerrunner:latest
