@@ -27,8 +27,8 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
-          context: ${{ github.workspace }}/build
-          file: Dockerfile
+          context: ${{ github.workspace }}
+          file: build/Dockerfile
           push: true
           tags: |
             ghcr.io/oolunar/githubdockerrunner:latest
