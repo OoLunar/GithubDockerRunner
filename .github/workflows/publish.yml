@@ -1,0 +1,36 @@
+name: Publish Void Linux Image
+
+on:
+  schedule:
+    - cron: "0 12 * * 0"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish Release
+    runs-on: "self-hosted"
+    permissions: write-all
+    if: "!contains(format('{0} {1}', github.event.head_commit.message, github.event.pull_request.title), '[ci-skip]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build Void Linux
+        run: |
+          cd ${{ github.workspace }}/libs/void-docker
+          docker build -f Dockerfile.full -t void-linux --build-arg "BOOTSTRAP_VERSION=latest-x86_64-musl" --cache-to "type=local,dest=${{ github.workspace }}/cache" .
+      - name: Build Github Docker Runner
+        run: |
+          cd ${{ github.workspace }}/build
+          docker build -t github-runner .
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=local,src=${{ github.workspace }}/cache
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ghcr.io/oolunar/githubdockerrunner:latest
+            ghcr.io/oolunar/githubdockerrunner:${{ github.env.GITHUB_SHA }}
