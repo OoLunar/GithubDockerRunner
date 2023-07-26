@@ -23,7 +23,7 @@ jobs:
       - name: Build Github Docker Runner
         run: |
           cd ${{ github.workspace }}/build
-          docker buildx build -t github-runner .
+          docker buildx build -t "ghcr.io/oolunar/githubdockerrunner:latest" -t "ghcr.io/oolunar/githubdockerrunner:${{ github.sha }}" .
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
@@ -31,4 +31,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/oolunar/githubdockerrunner:latest
-            ghcr.io/oolunar/githubdockerrunner:${{ github.env.GITHUB_SHA }}
+            ghcr.io/oolunar/githubdockerrunner:${{ github.sha }}
