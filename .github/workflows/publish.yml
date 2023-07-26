@@ -20,14 +20,10 @@ jobs:
         run: |
           cd ${{ github.workspace }}/libs/void-docker
           docker buildx build -f Dockerfile.full -t void-linux --build-arg "BOOTSTRAP_VERSION=latest-x86_64-musl" .
-      - name: Build Github Docker Runner
-        run: |
-          cd ${{ github.workspace }}/build
-          docker buildx build -t "ghcr.io/oolunar/githubdockerrunner:latest" -t "ghcr.io/oolunar/githubdockerrunner:${{ github.sha }}" .
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
-          context: ${{ github.workspace }}
+          context: ${{ github.workspace }}/build
           file: build/Dockerfile
           push: true
           tags: |
