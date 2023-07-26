@@ -19,17 +19,15 @@ jobs:
       - name: Build Void Linux
         run: |
           cd ${{ github.workspace }}/libs/void-docker
-          docker buildx build -f Dockerfile.full -t void-linux --build-arg "BOOTSTRAP_VERSION=latest-x86_64-musl" --cache-to "type=local,dest=${{ github.workspace }}/cache" .
+          docker buildx build -f Dockerfile.full -t void-linux --build-arg "BOOTSTRAP_VERSION=latest-x86_64-musl" .
       - name: Build Github Docker Runner
         run: |
           cd ${{ github.workspace }}/build
           docker buildx build -t github-runner .
       - name: Build and Push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
-          cache-from: type=local,src=${{ github.workspace }}/cache
           context: .
-          file: ./Dockerfile
           push: true
           tags: |
             ghcr.io/oolunar/githubdockerrunner:latest
