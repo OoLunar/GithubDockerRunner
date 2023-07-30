@@ -2,7 +2,8 @@ name: Publish Void Linux Image
 
 on:
   schedule:
-    - cron: "0 12 * * 0"
+    # Run every Sunday at 12:45 PM UTC
+    - cron: '45 12 * * 0'
   workflow_dispatch:
 
 permissions:
