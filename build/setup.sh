@@ -16,20 +16,20 @@ setup() {
   case "$(uname -m)" in
     x86_64)
       arch=x64
-      sha256=3d357d4da3449a3b2c644dee1cc245436c09b6e5ece3e26a05bb3025010ea14d
+      sha256=2974243bab2a282349ac833475d241d5273605d3628f0685bd07fb5530f9bb1a
       ;;
     armv7l)
       arch=arm
-      sha256=cb9992e3853d95116ff73f9353b45d5134e315eb3c03b13fb6adb8651346411d
+      sha256=97d3c06c8e2b33fcab4c5afd0237e596c52cc4450465382bcbd49a4b23b978a9
       ;;
     aarch64)
       arch=arm64
-      sha256=cac05dc325a3fd86e0253bd5bda1831e1d550805c47d6e3cc6d248570ceb3b74
+      sha256=b172da68eef96d552534294e4fb0a3ff524e945fc5d955666bab24eccc6ed149
       ;;
   esac
 
   # Download the Actions Runner package
-  curl --silent -o github-runner.tar.gz -L "https://github.com/actions/runner/releases/download/v2.302.1/actions-runner-linux-${arch}-2.302.1.tar.gz"
+  curl --silent -o github-runner.tar.gz -L "https://github.com/actions/runner/releases/download/v2.309.0/actions-runner-linux-${arch}-2.309.0.tar.gz"
 
   # Check the SHA256 checksum of the package
   echo "${sha256}  github-runner.tar.gz" | sha256sum -c > /dev/null
@@ -44,6 +44,9 @@ setup() {
 
   # Remove the package file
   rm ./github-runner.tar.gz
+
+  # Install .NET
+  bash /update-dotnet.sh
 
   # Run the setup script
   ./config.sh --url "$GITHUB_REPOSITORY" --token "$GITHUB_TOKEN" --unattended --replace
